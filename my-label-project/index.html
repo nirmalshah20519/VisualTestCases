@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Label Display</title>
+  <title>Visual Test Cases</title>
   <style>
     #input-container {
       display: flex;
@@ -47,12 +47,14 @@
       background-color: rgb(255, 134, 154);
       border: 2px solid black;
       padding: 4px;
+      
     }
 
     .parent-effect{
       background-color: rgb(139, 110, 255);
       border: 2px solid black;
       padding: 4px;
+      
     }
 
     .inner-parent{
@@ -64,7 +66,11 @@
       flex-direction: column;
     }
     .block{
-      padding: 8px;
+      padding: 4px;
+      border: 2px solid black;
+    }
+    .block p{
+      margin: 4px 2px;
     }
     .Variable{
       background-color: goldenrod;
@@ -85,7 +91,7 @@
     #labels-container{
       padding: 32px;
       display: flex;
-      flex-direction: row;
+      justify-content: center;
     }
 
   </style>

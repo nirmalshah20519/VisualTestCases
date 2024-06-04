@@ -70,7 +70,6 @@ const drawLabels = (labels: Label[], sentence: string) => {
     }">
             ${curr!.name}
         </div>`;
-    console.log(curr.children);
 
     str += `<div class="inner-parent">`;
 
@@ -93,6 +92,28 @@ const drawLabels = (labels: Label[], sentence: string) => {
 
     str += `</div>`;
     str += `</div>`;
+    let symbol=``;
+    if(curr.successor?.junctor!==null){
+      switch (curr.successor?.junctor) {
+        case 'AND':
+          // handle AND case
+          symbol='&&'
+          break;
+        case 'OR':
+          // handle OR case
+          symbol='||'
+          break;        
+        default:
+          symbol='';
+          break;
+      }      
+      str += `<div class="parent">`;
+      str += `<div class="block">`;
+      str += `${symbol}`;    
+      str += `</div>`;
+      str += `</div>`;
+    }
+
 
     const nextId: string = curr?.successor?.id ?? "";
     const nextObj = labels.find((l) => l.id === nextId);
