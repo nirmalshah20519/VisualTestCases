@@ -1,0 +1,12 @@
+.Cause1, .Effect1 {
+    color: white;
+    background-color: #007BFF;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+.Variable, .Condition {
+    color: white;
+    background-color: #28A745;
+    padding: 2px 5px;
+    border-radius: 4px;
+}

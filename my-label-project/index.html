@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Label Display</title>
+  <style>
+    #input-container {
+      display: flex;
+      align-items: center;
+      margin: 20px;
+    }
+    #input-sentence {
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #classify-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    #error-txt{
+      font-size: 16px;
+      color: red;
+      padding: 0px 20px;
+    }
+
+    #classify-result{
+      background-color: rgb(36, 36, 36);
+      padding: 16px;
+      color: white;
+      font-size: xx-large;
+    }
+
+    #label-button{
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;      
+      background-color: greenyellow;
+    }
+
+    .parent-cause{
+      background-color: rgb(255, 134, 154);
+      border: 2px solid black;
+      padding: 4px;
+    }
+
+    .parent-effect{
+      background-color: rgb(139, 110, 255);
+      border: 2px solid black;
+      padding: 4px;
+    }
+
+    .inner-parent{
+      display: flex;
+    }
+
+    .parent{
+      display: flex;
+      flex-direction: column;
+    }
+    .block{
+      padding: 8px;
+    }
+    .Variable{
+      background-color: goldenrod;
+    }
+    .Condition{
+      background-color: rgb(0, 183, 183);
+    }
+    .Negation{
+      background-color: red;
+    }
+    .Or{
+      background-color: lightgreen;
+    }
+    .And{
+      background-color:rgb(133, 255, 105);
+    }
+
+    #labels-container{
+      padding: 32px;
+      display: flex;
+      flex-direction: row;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="input-container">
+    <input type="text" id="input-sentence" placeholder="Enter a sentence">
+    <button id="classify-button">Classify</button>
+  </div>
+  <p id="error-txt"></p>
+  <p id="classify-result" style="display: none;"></p>
+  <button id="label-button" style="display: none;">Label</button>
+  <div id="labels-container"></div>
+
+
+  
+  
+
+
+  <script type="module" src="/src/main.ts">
+  </script>
+</body>
+</html>
