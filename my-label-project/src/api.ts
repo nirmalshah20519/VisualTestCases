@@ -1,5 +1,5 @@
 // src/api.ts
-import { Label } from './types';
+import { JsonData, Label } from './types';
 
 export interface LableApiResponse {
     labels: Label[];
@@ -44,4 +44,22 @@ export async function fetchLabels(sentence:string): Promise<LableApiResponse> {
   }
 
   return response.json() as Promise<LableApiResponse>;
+}
+
+export async function fetchTestSuite(sentence:string): Promise<JsonData> {
+  const response = await fetch('http://cira-api.diptsrv003.bth.se/api/testsuite', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      sentence
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch labels');
+  }
+
+  return response.json() as Promise<JsonData>;
 }

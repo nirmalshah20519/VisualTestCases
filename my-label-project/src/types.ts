@@ -12,3 +12,28 @@ export interface successor{
     junctor:string|null
 }
 
+export interface Condition {
+    id: string;
+    variable: string;
+    condition: string;
+}
+
+export interface Expected {
+    id: string;
+    variable: string;
+    condition: string;
+}
+
+export interface Case {
+    [key: string]: boolean;
+}
+
+interface Suite {
+    conditions: Condition[];
+    expected: Expected[];
+    cases: Case[];
+}
+
+export interface JsonData {
+    suite: Suite;
+}

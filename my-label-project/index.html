@@ -1,117 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visual Test Cases</title>
-  <style>
-    #input-container {
-      display: flex;
-      align-items: center;
-      margin: 20px;
-    }
-    #input-sentence {
-      flex: 1;
-      padding: 10px;
-      font-size: 16px;
-    }
-    #classify-button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 10px;
-      cursor: pointer;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Test Cases</title>
+    <style>
+      #input-container {
+        display: flex;
+        align-items: center;
+        margin: 20px;
+      }
+      #input-sentence {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+      }
+      #classify-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
 
-    #error-txt{
-      font-size: 16px;
-      color: red;
-      padding: 0px 20px;
-    }
+      #error-txt {
+        font-size: 16px;
+        color: red;
+        padding: 0px 20px;
+      }
 
-    #classify-result{
-      background-color: rgb(36, 36, 36);
-      padding: 16px;
-      color: white;
-      font-size: xx-large;
-    }
+      #classify-result {
+        background-color: rgb(36, 36, 36);
+        padding: 16px;
+        color: white;
+        font-size: xx-large;
+      }
 
-    #label-button{
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 10px;
-      cursor: pointer;      
-      background-color: greenyellow;
-    }
+      #label-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 10px;
+        cursor: pointer;
+        background-color: greenyellow;
+      }
 
-    .parent-cause{
-      background-color: rgb(255, 134, 154);
-      border: 2px solid black;
-      padding: 4px;
+      #testsuite-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-left: 10px;
+        cursor: pointer;
+        background-color: rgb(81, 151, 255);
+      }
+
+      .parent-cause {
+        background-color: rgb(255, 134, 154);
+        border: 2px solid black;
+        padding: 4px;
+      }
+
+      .parent-effect {
+        background-color: rgb(139, 110, 255);
+        border: 2px solid black;
+        padding: 4px;
+      }
+
+      .inner-parent {
+        display: flex;
+      }
+
+      .parent {
+        display: flex;
+        flex-direction: column;
+      }
+      .block {
+        padding: 4px;
+        border: 2px solid black;
+      }
+      .block p {
+        margin: 4px 2px;
+      }
+      .Variable {
+        background-color: goldenrod;
+      }
+      .Condition {
+        background-color: rgb(0, 183, 183);
+      }
+      .Negation {
+        background-color: red;
+      }
+      .Or {
+        background-color: lightgreen;
+      }
+      .And {
+        background-color: rgb(133, 255, 105);
+      }
+
+      #labels-container {
+        padding: 32px;
+        display: flex;
+        justify-content: center;
+      }
+
+      #dynamicTable {
+        margin-top: 3rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: rgb(191, 252, 255);
+      }
+
+      #testsuite-result {
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align: center;">Visual Test Cases</h1>
+    <div id="input-container">
+      <input type="text" id="input-sentence" placeholder="Enter a sentence" />
+      <button id="classify-button">
+        <span id="classify-txt">Classify</span>
+        
+        <div id="loader1" style="display: none">
+          <img src="loader.gif" alt="Loading..." width="20px" />
+          <!-- Make sure to have a loader.gif file or replace this with your loader image -->
+        </div>
+      </button>
+    </div>
+    <p id="error-txt"></p>
+    <p id="classify-result" style="display: none"></p>
+    <button id="label-button" style="display: none; position:relative;">
+      <span id="label-txt">Label</span>      
+      <div id="loader2" style="display: none;">
+        <img src="loader.gif" alt="Loading..." width="20px" />
+        <!-- Make sure to have a loader.gif file or replace this with your loader image -->
+      </div>
+    </button>
+    <div id="labels-container"></div>
+    <button id="testsuite-button" style="display: none">
+      <span id="test-txt">Create Test Suite</span>      
+      <div id="loader3" style="display: none;">
+        <img src="loader.gif" alt="Loading..." width="20px" />
+        <!-- Make sure to have a loader.gif file or replace this with your loader image -->
+      </div>
       
-    }
-
-    .parent-effect{
-      background-color: rgb(139, 110, 255);
-      border: 2px solid black;
-      padding: 4px;
-      
-    }
-
-    .inner-parent{
-      display: flex;
-    }
-
-    .parent{
-      display: flex;
-      flex-direction: column;
-    }
-    .block{
-      padding: 4px;
-      border: 2px solid black;
-    }
-    .block p{
-      margin: 4px 2px;
-    }
-    .Variable{
-      background-color: goldenrod;
-    }
-    .Condition{
-      background-color: rgb(0, 183, 183);
-    }
-    .Negation{
-      background-color: red;
-    }
-    .Or{
-      background-color: lightgreen;
-    }
-    .And{
-      background-color:rgb(133, 255, 105);
-    }
-
-    #labels-container{
-      padding: 32px;
-      display: flex;
-      justify-content: center;
-    }
-
-  </style>
-</head>
-<body>
-  <div id="input-container">
-    <input type="text" id="input-sentence" placeholder="Enter a sentence">
-    <button id="classify-button">Classify</button>
-  </div>
-  <p id="error-txt"></p>
-  <p id="classify-result" style="display: none;"></p>
-  <button id="label-button" style="display: none;">Label</button>
-  <div id="labels-container"></div>
-
-
-  
-  
-
-
-  <script type="module" src="/src/main.ts">
-  </script>
-</body>
+    </button>
+    <div id="testsuite-result">
+      <table id="dynamicTable">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
